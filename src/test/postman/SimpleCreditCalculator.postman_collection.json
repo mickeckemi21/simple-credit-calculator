@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "5bed5304-3c39-422c-957f-cca58a37cef7",
+		"name": "SimpleCreditCalculator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST InstallmentPlan (amount=20000.00, numberOfMonths=60, annualInterestPercent=5.00)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2651a0d0-bbeb-49f3-856e-d832ca1f3329",
+						"exec": [
+							"const response = pm.response;",
+							"const responseJson = pm.response.json();",
+							"",
+							"pm.test('Response has Status Code 200', () => {",
+							"    response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Response has amount, totalAmount, interestAmount, items properties', () => {",
+							"    pm.expect(responseJson).to.be.an('object');",
+							"    pm.expect(responseJson.amount).to.be.a('number');",
+							"    pm.expect(responseJson.totalAmount).to.be.a('number');",
+							"    pm.expect(responseJson.interestAmount).to.be.a('number');",
+							"    pm.expect(responseJson.items).to.be.an('array');",
+							"});",
+							"",
+							"pm.test('Amount equals to 20000.00', () => {",
+							"    const expected = 20000.00;",
+							"",
+							"    pm.expect(responseJson.amount).to.eql(expected);",
+							"});",
+							"",
+							"pm.test('Total Amount equals to 22645.48', () => {",
+							"    const expected = 22645.48;",
+							"",
+							"    pm.expect(responseJson.totalAmount).to.eql(expected);",
+							"});",
+							"",
+							"pm.test('Interest Amount equals to 2645.48', () => {",
+							"    const expected = 2645.48;",
+							"",
+							"    pm.expect(responseJson.interestAmount).to.eql(expected);",
+							"});",
+							"",
+							"pm.test('Items array length equals to 60', () => {",
+							"    const expected = 60;",
+							"",
+							"    pm.expect(responseJson.items).to.have.lengthOf(expected);",
+							"});",
+							"",
+							"pm.test('Items elements have paymentAmount field equal to 377.42', () => {",
+							"    const expected = 377.42;",
+							"",
+							"    pm.expect(responseJson.items.all(item => item.paymentAmount === expected)).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 20000.00,\r\n    \"numberOfMonths\": 60,\r\n    \"annualInterestPercent\": 5.00\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/installment-plan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"installment-plan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST InstallmentPlan (amount=1000.00, numberOfMonths=10, annualInterestPercent=5.00)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "428df69e-07de-4864-9da2-b612ce29b4de",
+						"exec": [
+							"const response = pm.response;",
+							"const responseJson = pm.response.json();",
+							"",
+							"pm.test('Response has Status Code 200', () => {",
+							"    response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Response has amount, totalAmount, interestAmount, items properties', () => {",
+							"    pm.expect(responseJson).to.be.an('object');",
+							"    pm.expect(responseJson.amount).to.be.a('number');",
+							"    pm.expect(responseJson.totalAmount).to.be.a('number');",
+							"    pm.expect(responseJson.interestAmount).to.be.a('number');",
+							"    pm.expect(responseJson.items).to.be.an('array');",
+							"});",
+							"",
+							"pm.test('Amount equals to 1000.00', () => {",
+							"    const expected = 1000.00;",
+							"",
+							"    pm.expect(responseJson.amount).to.eql(expected);",
+							"});",
+							"",
+							"pm.test('Total Amount equals to 1023.06', () => {",
+							"    const expected = 1023.06;",
+							"",
+							"    pm.expect(responseJson.totalAmount).to.eql(expected);",
+							"});",
+							"",
+							"pm.test('Interest Amount equals to 23.06', () => {",
+							"    const expected = 23.06;",
+							"",
+							"    pm.expect(responseJson.interestAmount).to.eql(expected);",
+							"});",
+							"",
+							"pm.test('Items array length equals to 10', () => {",
+							"    const expected = 10;",
+							"",
+							"    pm.expect(responseJson.items).to.have.lengthOf(expected);",
+							"});",
+							"",
+							"pm.test('Items elements have paymentAmount field equal to 102.31', () => {",
+							"    const expected = 102.31;",
+							"",
+							"    pm.expect(responseJson.items.all(item => item.paymentAmount === expected)).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 1000.00,\r\n    \"numberOfMonths\": 10,\r\n    \"annualInterestPercent\": 5.00\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/installment-plan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"installment-plan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST InstallmentPlan (amount=150000.00, numberOfMonths=360, annualInterestPercent=6.00)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a0baafc3-3ad7-4d1c-87da-9ed0c38772b8",
+						"exec": [
+							"const response = pm.response;",
+							"const responseJson = pm.response.json();",
+							"",
+							"pm.test('Response has Status Code 200', () => {",
+							"    response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Response has amount, totalAmount, interestAmount, items properties', () => {",
+							"    pm.expect(responseJson).to.be.an('object');",
+							"    pm.expect(responseJson.amount).to.be.a('number');",
+							"    pm.expect(responseJson.totalAmount).to.be.a('number');",
+							"    pm.expect(responseJson.interestAmount).to.be.a('number');",
+							"    pm.expect(responseJson.items).to.be.an('array');",
+							"});",
+							"",
+							"pm.test('Amount equals to 150000.00', () => {",
+							"    const expected = 150000.00;",
+							"",
+							"    pm.expect(responseJson.amount).to.eql(expected);",
+							"});",
+							"",
+							"pm.test('Total Amount equals to 323757.28', () => {",
+							"    const expected = 323757.28;",
+							"",
+							"    pm.expect(responseJson.totalAmount).to.eql(expected);",
+							"});",
+							"",
+							"pm.test('Interest Amount equals to 173757.28', () => {",
+							"    const expected = 173757.28;",
+							"",
+							"    pm.expect(responseJson.interestAmount).to.eql(expected);",
+							"});",
+							"",
+							"pm.test('Items array length equals to 360', () => {",
+							"    const expected = 360;",
+							"",
+							"    pm.expect(responseJson.items).to.have.lengthOf(expected);",
+							"});",
+							"",
+							"pm.test('Items elements have paymentAmount field equal to 899.33', () => {",
+							"    const expected = 899.33;",
+							"",
+							"    pm.expect(responseJson.items.all(item => item.paymentAmount === expected)).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 150000.00,\r\n    \"numberOfMonths\": 360,\r\n    \"annualInterestPercent\": 6.00\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/installment-plan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"installment-plan"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
